@@ -19,16 +19,16 @@ public class Foley {
 
 		fileName = args[0];
 
-		ArrayList<String[]> toDoList = storeTargetFile(fileName);
+		ArrayList<SchedulableProcess> toDoList = storeTargetFile(fileName);
 
 		if (toDoList.size() == 0) {
 			System.out.println("Cannot continue. Nothing in the To Do list.");
 			System.exit(0);
 		}
 
-		for (String[] processInfo: toDoList) {
-			System.out.println(processInfo[0] + " " + processInfo[1]);
-		}
+		PrettyOutputPrinter printer = new PrettyOutputPrinter();
+
+		printer.print("FCFS", toDoList);
 	}
 
 	/**
@@ -36,9 +36,9 @@ public class Foley {
 	 * @param fileName String filename to open and read
 	 * @return Arraylist of string arrays
 	 */
-	private static ArrayList<String[]> storeTargetFile(String fileName) {
+	private static ArrayList<SchedulableProcess> storeTargetFile(String fileName) {
 
-		ArrayList<String[]> toDoList = new ArrayList<String[]>();
+		ArrayList<SchedulableProcess> toDoList = new ArrayList<SchedulableProcess>();
 
 		try {
 
@@ -50,19 +50,25 @@ public class Foley {
 
 				nextLine = reader.nextLine();
 
+				// Next line
+				lineNumber++;
+
 				// Split the line according to whitespace
 				String[] processInfo = nextLine.split("\\s+");
 
 				// Sanitize
-				if (processInfo.length > 2 && processInfo.length == 0) {
+				if (processInfo.length != 2) {
 
 					System.out.println("Improperly formatted line on line " + Integer.toString(lineNumber));
 					System.exit(0);
 				}
 
-				toDoList.add(processInfo);
+				// Create and add the new process
+				SchedulableProcess process =
+						new SchedulableProcess(Integer.parseInt(processInfo[0]),
+								Integer.parseInt(processInfo[1]));
 
-				lineNumber++;
+				toDoList.add(process);
 			}
 		} catch (FileNotFoundException e) {
 
