@@ -9,6 +9,7 @@ public class SchedulableProcess {
 	private int arrival;
 	private int departure;
 	private int execTime;
+    private int timeExecuted;
 
 	/**
 	 * Constructor
@@ -21,7 +22,24 @@ public class SchedulableProcess {
 		this.arrival = arrival;
 		this.departure = 0;
 		this.execTime = execTime;
+        this.timeExecuted = 0;
 	}
+
+    /**
+     * Returns the int time executed for this process
+     * @return int time executed for process
+     */
+    public int getTimeExecuted() {
+        return timeExecuted;
+    }
+
+    /**
+     * Increments the time executed by n. N is arbitrary so that any time quantum can be used.
+     * @param n time quantum to increment by
+     */
+    public void incrementTimeExecuted(int n) {
+        timeExecuted += n;
+    }
 
 	/**
 	 * Returns the process number's ID

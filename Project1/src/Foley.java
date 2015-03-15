@@ -37,6 +37,9 @@ public class Foley {
 		printer.print("FCFS", toDoList);
 
 		printer.print("SRTF", toDoList);
+
+        RR rr = new RR(toDoList);
+
 		printer.print("RR (Q = 1)", toDoList);
 	}
 
