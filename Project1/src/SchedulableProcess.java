@@ -15,12 +15,12 @@ public class SchedulableProcess {
 	 * @param processId ID of the process
 	 * @param arrival Arrival time for process
 	 */
-	public SchedulableProcess(int processId, int arrival) {
+	public SchedulableProcess(int processId, int arrival, int execTime) {
 
 		this.processId = processId;
 		this.arrival = arrival;
 		this.departure = 0;
-		this.execTime = 0;
+		this.execTime = execTime;
 	}
 
 	/**
@@ -77,13 +77,5 @@ public class SchedulableProcess {
 	 */
 	public void setDeparture(int departure) {
 		this.departure = departure;
-	}
-
-	/**
-	 * Sets the execution time for the process
-	 * @param execTime int time the process took to execute
-	 */
-	public void setExecTime(int execTime) {
-		this.execTime = execTime;
 	}
 }

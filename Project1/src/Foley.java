@@ -28,7 +28,12 @@ public class Foley {
 
 		PrettyOutputPrinter printer = new PrettyOutputPrinter();
 
+		FCFS fcfs = new FCFS(toDoList);
+
 		printer.print("FCFS", toDoList);
+
+		printer.print("SRTF", toDoList);
+		printer.print("RR (Q = 1)", toDoList);
 	}
 
 	/**
@@ -45,6 +50,7 @@ public class Foley {
 			Scanner reader = new Scanner(new File(fileName));
 			String nextLine;
 			int lineNumber = 0;
+			int processNumber = 0;
 
 			while (reader.hasNext()) {
 
@@ -65,10 +71,12 @@ public class Foley {
 
 				// Create and add the new process
 				SchedulableProcess process =
-						new SchedulableProcess(Integer.parseInt(processInfo[0]),
+						new SchedulableProcess(processNumber, Integer.parseInt(processInfo[0]),
 								Integer.parseInt(processInfo[1]));
 
 				toDoList.add(process);
+
+				processNumber++;
 			}
 		} catch (FileNotFoundException e) {
 
