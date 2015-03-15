@@ -50,31 +50,48 @@ public class FCFS {
 			// Check to see if more processes are ready to be added to the queue
 			addToReadyQueue();
 
-			// test to see if current process is finished
-			if (currentExecutionDuration == currentProcess.getExecTime()) {
+            // Check to see if we're idling
+            if (idle) {
 
-				currentProcess.setDeparture(time);
+                // We are! Check to see if there is anything that needs to be worked on
+                if (readyQueue.isEmpty()) {
 
-				// Check if it's the last process on the list
-				if (processes.isEmpty() && readyQueue.isEmpty()) {
+                    // Nope. Undo the last execution counter
+                    currentExecutionDuration--;
+                } else {
 
-					done = true;
-				}
-				if (! readyQueue.isEmpty()) {
+                    // Woohoo! Some work!
+                    currentProcess = readyQueue.get(0);
+                    readyQueue.remove(0);
+                    idle = false;
+                }
+            // We are not idling. Check to see if we're finished with current job
+            } else if (currentExecutionDuration == currentProcess.getExecTime()) {
 
-					currentProcess = readyQueue.get(0);
-					readyQueue.remove(0);
+                // We are. Chalk up the time and reset the counter
+                currentProcess.setDeparture(time);
+                currentExecutionDuration = 0;
 
-					currentExecutionDuration = 1;
-				}
-			} else {
+                // Check if it's the last process on the list
+                if (processes.isEmpty() && readyQueue.isEmpty()) {
 
-				// increment the execution duration
-				// needs to be here so that an "idle" state doesn't inflate this time
-				currentExecutionDuration++;
-			}
+                    done = true;
+                }
+
+                if (readyQueue.isEmpty()) {
+
+                    // Welp. We're idling.
+                    currentExecutionDuration--;
+                    idle = true;
+                } else {
+
+                    currentProcess = readyQueue.get(0);
+                    readyQueue.remove(0);
+                }
+            }
 
 			// increment time steps
+            currentExecutionDuration++;
 			time++;
 		}
 	}

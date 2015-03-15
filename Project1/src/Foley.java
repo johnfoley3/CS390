@@ -8,9 +8,13 @@ import java.util.Scanner;
  */
 public class Foley {
 
+    /**
+     * Main Driver for the project
+     * @param args File name is read through a parameter
+     */
 	public static void main(String[] args) {
 
-		String fileName = "";
+		String fileName;
 
 		if (args.length == 0) {
 			System.out.println("Please give a file argument!");
