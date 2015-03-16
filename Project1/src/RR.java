@@ -45,9 +45,9 @@ public class RR {
             // Does the ready queue have jobs to schedule
             if (!readyQueue.isEmpty()) {
 
-                for (Iterator<SchedulableProcess> iterator = readyQueue.iterator(); iterator.hasNext(); ) {
+                for (int i = 0; i < readyQueue.size(); i++) {
 
-                    SchedulableProcess process = iterator.next();
+                    SchedulableProcess process = readyQueue.get(i);
 
                     process.incrementTimeExecuted( Q );
 
@@ -56,9 +56,13 @@ public class RR {
                     // If the process is finished, then remove it from the ready queue
                     if (process.getTimeExecuted() == process.getExecTime()) {
 
-                        iterator.remove();
+                        readyQueue.remove(i);
                         process.setDeparture(time);
+	                    i--;
                     }
+
+	                // Check to see if more processes are ready to be added to the queue
+	                addToReadyQueue();
                 }
             } else {
 
