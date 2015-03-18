@@ -27,6 +27,7 @@ public class PrettyOutputPrinter {
 					process.getWaitingTime());
 		}
 
+		System.out.println();
 		System.out.format("Average waiting time = %f%n", getAverageWaitingTime(processes));
 		System.out.format("Average turnaround time = %f%n", getAverageTurnaroundTime(processes));
 		System.out.println();
