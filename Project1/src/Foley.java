@@ -49,6 +49,11 @@ public class Foley {
 		printer.print("RR (Q = 1)", processesRR);
 	}
 
+    /**
+     * Makes a deep copy of the target ArrayList<SchedulableProcess>.
+     * @param processes The Target ArrayList
+     * @return A new ArrayList with all new references all the way down.
+     */
     private static ArrayList<SchedulableProcess> deepCopy(ArrayList<SchedulableProcess> processes) {
 
         ArrayList<SchedulableProcess> returnList = new ArrayList<SchedulableProcess>();

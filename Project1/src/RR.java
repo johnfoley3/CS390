@@ -15,13 +15,15 @@ public class RR {
     /**
      * Constant int representing the time quantum. For this project, it is specified to be 1.
      */
-    private final int Q = 1;
+    private final int Q;
 
 	public RR(final ArrayList<SchedulableProcess> processes) {
 
         this.processes = new ArrayList<SchedulableProcess>(processes);
         this.time = 0;
         this.readyQueue = new ArrayList<SchedulableProcess>();
+
+        Q = 1;
 
         runScheduler();
 	}

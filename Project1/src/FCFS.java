@@ -12,6 +12,11 @@ public class FCFS {
 	private ArrayList<SchedulableProcess> readyQueue;
 	private int time;
 
+    /**
+     * Constant int representing the time quantum. For this project, it is specified to be 1.
+     */
+    private final int Q;
+
 	/**
 	 * Constructs a FCFS object and runs scheduler
 	 * @param processes ArrayList of schedulable processes to iterate over
@@ -21,6 +26,8 @@ public class FCFS {
 		this.processes = new ArrayList<SchedulableProcess>(processes);
 		this.time = 0;
 		this.readyQueue = new ArrayList<SchedulableProcess>();
+
+        Q = 1;
 
 		runScheduler();
 	}
@@ -43,7 +50,7 @@ public class FCFS {
 
 		// increment first time step
 		currentExecutionDuration++;
-		time++;
+		time += Q;
 
 		while (!done) {
 
@@ -92,7 +99,7 @@ public class FCFS {
 
 			// increment time steps
             currentExecutionDuration++;
-			time++;
+			time += Q;
 		}
 	}
 
