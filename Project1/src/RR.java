@@ -17,7 +17,7 @@ public class RR {
      */
     private final int Q = 1;
 
-	public RR(ArrayList<SchedulableProcess> processes) {
+	public RR(final ArrayList<SchedulableProcess> processes) {
 
         this.processes = new ArrayList<SchedulableProcess>(processes);
         this.time = 0;

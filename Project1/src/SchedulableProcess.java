@@ -26,6 +26,15 @@ public class SchedulableProcess {
 	}
 
     /**
+     * Creates and returns a reference to a new SchedulableProcess object
+     * @return A brand new SchedulableProcess object
+     */
+    public SchedulableProcess deepCopy() {
+
+        return new SchedulableProcess(processId, arrival, execTime);
+    }
+
+    /**
      * Returns the int time executed for this process
      * @return int time executed for process
      */

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class SJRF {
 
-	public SJRF(ArrayList<String[]> processInformation) {
+	public SJRF(final ArrayList<SchedulableProcess> processes) {
 
 	}
 }

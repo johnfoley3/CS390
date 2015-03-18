@@ -25,6 +25,10 @@ public class Foley {
 
 		ArrayList<SchedulableProcess> toDoList = storeTargetFile(fileName);
 
+        ArrayList<SchedulableProcess> processesFCFS = deepCopy(toDoList);
+        ArrayList<SchedulableProcess> processesSRTF = deepCopy(toDoList);
+        ArrayList<SchedulableProcess> processesRR = deepCopy(toDoList);
+
 		if (toDoList.size() == 0) {
 			System.out.println("Cannot continue. Nothing in the To Do list.");
 			System.exit(0);
@@ -32,16 +36,29 @@ public class Foley {
 
 		PrettyOutputPrinter printer = new PrettyOutputPrinter();
 
-		FCFS fcfs = new FCFS(toDoList);
+		FCFS fcfs = new FCFS(processesFCFS);
 
-		printer.print("FCFS", toDoList);
+		printer.print("FCFS", processesFCFS);
 
-		printer.print("SRTF", toDoList);
+        SJRF sjrf = new SJRF(processesSRTF);
 
-        RR rr = new RR(toDoList);
+		printer.print("SRTF", processesSRTF);
 
-		printer.print("RR (Q = 1)", toDoList);
+        RR rr = new RR(processesRR);
+
+		printer.print("RR (Q = 1)", processesRR);
 	}
+
+    private static ArrayList<SchedulableProcess> deepCopy(ArrayList<SchedulableProcess> processes) {
+
+        ArrayList<SchedulableProcess> returnList = new ArrayList<SchedulableProcess>();
+
+        for (SchedulableProcess process: processes) {
+            returnList.add(process.deepCopy());
+        }
+
+        return returnList;
+    }
 
 	/**
 	 * Reads the target file and constructs a list of processes to schedule
