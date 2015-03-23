@@ -42,7 +42,7 @@ public class Foley {
 
         SJRF sjrf = new SJRF(processesSRTF);
 
-		printer.print("SRTF", processesSRTF);
+		printer.print("SJRF", processesSRTF);
 
         RR rr = new RR(processesRR);
 
